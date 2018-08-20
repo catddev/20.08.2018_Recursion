@@ -91,13 +91,8 @@ int max_arr2(int arr[], int size, int max) {
 		}
 	}
 	return index;
-	/*int p = 0;
-
-	right = left + 9;
-	int middle = (left + right) / 2;
-	if (left == right) return arr[left];
-	return (pos(arr, left, middle) + pos(arr, middle + 1, right));*/
 }
+  // та же задача через рекурсию
   int position(int arr[], int pos, int size, int &min, int &index) {
 	  
 	  if (pos == size - 3) return index;
@@ -137,10 +132,13 @@ int main()
 		{
 		case 51:
 		{
+			// рандомный массив один на две функции, чтобы видеть, что результат одинаковый
 			int arr[10];
 			
+			//№1
 			cout << pos(arr, 10) << endl << endl;
 
+			//№2
 			int min = INT_MAX;
 			int index = 0;
 			int pos = 0;
@@ -197,16 +195,6 @@ int main()
 		case 12:
 		{
 			
-		}
-		break;
-		case 13:
-		{
-
-		}
-		break;
-		case 14:
-		{
-
 		}
 		break;
 		default:
