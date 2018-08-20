@@ -9,34 +9,7 @@
 
 using namespace std;
 
-double round_num(double x, int k, int n) {
-	/*int k = 0;*/
-
-	//while (x / 10 != 0)
-	//{
-	//	x *= 10; // 1234.56999999
-	//	k++;
-	//}
-	//int a = int(x / 10);
-	//k--;
-
-	int a = x * pow(10, k);
-
-	int i = n;
-	while (i != 0)
-	{
-		if (i == 1)
-		{
-			if (a % 10 >= 5) a = (a / 10 + 1)*pow(10, n);
-			else a = a / 10 * pow(10, n);
-		}
-		else a /= 10;
-		i--;
-	}
-	x = double(a / pow(10, k));
-
-	return x;
-}
+//case 3
 int f(int n) {// факториал через рекурсию
 	if (n == 1) return 1;
 	return n * f(n - 1);
@@ -52,7 +25,7 @@ int p(int x, int y) {
 	if (y == 0) return 0;
 	return x + p(x, y - 1);
 }
-//case 8. print *
+// 48. *Написать рекурсивную функцию, которая выводит N звезд в ряд, число N задает пользователь. Проиллюстрируйте работу функции примером.
 void print(int n) {
 	if (n == 0)
 	{
@@ -71,29 +44,21 @@ int sum_arr(int arr[], int left, int right) {
 }
 // case 10. find max element of an array
 int max_arr(int arr[], int left, int right) {
-	if (left == right) return arr[right];
 	int mid = (right + left) / 2;
+	if (left == right) return arr[right];
+	
 	int leftSide = max_arr(arr, left, mid);
 	int rightSide = max_arr(arr, mid + 1, right);
 
 	return(leftSide > rightSide ? leftSide : rightSide);
 }
-// the same task case 11
+// the same task, case 11 // без поэлементной раскладки массива
 int max_arr2(int arr[], int size, int max) {
 	if (size == 0) return max;
-	if (max_arr2(arr, size - 1, max)) max=arr[size];
+	if (max_arr2(arr, size - 1, max)<arr[size]) max=arr[size];
 	return max_arr2(arr, size - 1, max);
 }
 
-
-//int max1(int arr[], int left, right) {
-//	int max_el = INT_MIN;
-//	if (max_el > arr[size - 1]) return max(arr, size);
-//	else {
-//		return max(arr, size - 1);
-//	}
-//	if (size == 0) return arr[0];
-//}
 // 51.	**Напишите рекурсивную функцию, которая принимает одномерный массив из 100 целых чисел
 // заполненных случайным образом и находит позицию,
 // с которой начинается последовательность из 10 чисел, сумма которых минимальна.
@@ -169,33 +134,10 @@ int main()
 			cout << pos << endl << endl;
 		}
 		break;
-		case 1:
-		{
-			/*double x = 123.456;
-			int n = 4;
-			cout << round_num(x, n) << endl << endl;*/
-		}
-		break;
-		case 2:
-		{
-			double x;
-			int n, k;
-			cin >> x >> k >> n;
-
-			cout << round_num(x, k, n) << endl << endl;
-		}
-		break;
 		case 3:
 		{
 			int n = 5;
 			cout << f(n) << endl << endl;
-		}
-		break;
-		case 4:
-		{
-			int a[] = { 2, 5, 3, 4, 1, 9, 3, 8, 0 };
-
-			
 		}
 		break;
 		case 46:
@@ -210,7 +152,7 @@ int main()
 			cout << p(x, y) << endl << endl;
 		}
 		break;
-		case 8:
+		case 48:
 		{
 			int x;
 			cin >> x;
@@ -233,7 +175,7 @@ int main()
 		break;
 		case 11:
 		{
-			int a[] = { 3,4,2,0,8,5,1 };
+			int a[] = { -3,-4,-2,-1,-8,-5,-1 };
 
 			int max = INT_MIN;
 			cout << max_arr2(a, 6, max) << endl << endl;
@@ -241,7 +183,9 @@ int main()
 		break;
 		case 12:
 		{
+			int a[] = { -3,-4,-2,-1,-8,-5,-1 };
 
+			cout << max_arr3(a, 6) << endl << endl;
 		}
 		break;
 		case 13:
