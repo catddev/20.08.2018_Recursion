@@ -62,8 +62,16 @@ int max_arr2(int arr[], int size, int max) {
 // 51.	**Напишите рекурсивную функцию, которая принимает одномерный массив из 100 целых чисел
 // заполненных случайным образом и находит позицию,
 // с которой начинается последовательность из 10 чисел, сумма которых минимальна.
-  int pos(int arr[], int size=10) {
-	//
+// (!!! поменяем условия для наглядности на 10 вместо 100 и на 4 вместо 10)
+  int pos(int arr[], int size) {
+	
+	for (int i = 0; i < 10; i++)
+	 {
+		arr[i] = rand() % 10;
+		cout << arr[i] << " ";
+	 }
+	cout << endl << endl;
+
 	int sum = 0;
 	int min_sum = INT_MAX;
 	int index = 0;
@@ -71,7 +79,7 @@ int max_arr2(int arr[], int size, int max) {
 	for (int i = 0; i < 10; i++)
 	{
 		sum = 0;
-		for (int j = i; j < i + 3; j++)
+		for (int j = i; j < i + 4; j++)
 		{
 			if ((i + 3) >= size) return index;
 			sum += arr[j];
@@ -90,18 +98,23 @@ int max_arr2(int arr[], int size, int max) {
 	if (left == right) return arr[left];
 	return (pos(arr, left, middle) + pos(arr, middle + 1, right));*/
 }
-  int position(int arr[], int pos, int size, int max) {
-	  if (pos == size - 4) return max;
-	  int sum = 0;
-	  for (int i = 0; i < 4; i++)
-	  {
-		  sum += arr[pos + i];
-	  }
-	  if (sum > max)
-		  max = sum;
-	  pos++;
+  int position(int arr[], int pos, int size, int &min, int &index) {
+	  
+	  if (pos == size - 3) return index;
 
-	  return position(arr, pos, size, max);
+	  int sum = 0;
+	  for (int i = pos; i < pos + 4; i++)
+	  { 
+		  sum += arr[i];
+	  }
+	  if (sum < min)
+	  {
+		  min = sum;
+		  index = pos;
+	  }
+	  pos++;
+	 
+	  return position(arr, pos, size, min, index);
   }
 
 
@@ -125,13 +138,13 @@ int main()
 		case 51:
 		{
 			int arr[10];
-			for (int i = 0; i < 10; i++) {
-				arr[i] = rand() % 10;
-				cout << arr[i] << " ";
-			}
-			cout << endl << endl;
+			
+			cout << pos(arr, 10) << endl << endl;
 
-			cout << pos << endl << endl;
+			int min = INT_MAX;
+			int index = 0;
+			int pos = 0;
+			cout << position(arr, pos, 10, min, index) << endl << endl;
 		}
 		break;
 		case 3:
@@ -183,9 +196,7 @@ int main()
 		break;
 		case 12:
 		{
-			int a[] = { -3,-4,-2,-1,-8,-5,-1 };
-
-			cout << max_arr3(a, 6) << endl << endl;
+			
 		}
 		break;
 		case 13:
